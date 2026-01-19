@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GothDating.com - Find Your Dark Soulmate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🦇 Goth Dating 🦇</h1>
+            <p class="tagline" style="font-size: 0.9em; color: #888;">GothDating.com</p>
+            <p class="tagline">Find someone who digs your darkness</p>
+            <div id="impersonationWarning" style="display: none; background: rgba(255, 0, 0, 0.2); border: 2px solid #ff0000; padding: 10px; margin: 10px 0; border-radius: 10px; color: #ff6666;">
+                ⚠️ Admin is impersonating this account
+            </div>
+            <div class="header-links">
+                <a href="graveyard.html" class="graveyard-link">💀 My Graveyard 💀</a>
+                <a href="create-profile.html" class="graveyard-link">➕ Create Profile</a>
+                <a href="#" onclick="checkAdminAccess(); return false;" class="graveyard-link" id="adminLink" style="display: none;">👑 Admin Panel</a>
+                <a href="#" onclick="logout()" class="graveyard-link" id="logoutLink">🚪 Logout</a>
+            </div>
+        </header>
+
+        <div class="card-container" id="cardContainer">
+            <div class="profile-card" id="profileCard">
+                <div class="profile-image-container">
+                    <img id="profileImage" src="" alt="Profile">
+                    <div class="profile-name" id="profileName"></div>
+                </div>
+                <div class="light-effect" id="lightEffect"></div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="action-btn reject-btn" id="rejectBtn">
+                <span class="btn-icon">💀</span>
+                <span class="btn-text">Reject</span>
+            </button>
+            <button class="action-btn accept-btn" id="acceptBtn">
+                <span class="btn-icon">⛏️</span>
+                <span class="btn-text">Dig Them</span>
+            </button>
+        </div>
+
+        <div class="match-message" id="matchMessage">
+            <h2>💀 You Dig Them! 💀</h2>
+            <p>Time to dig deeper...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check for admin messages on page load
+        function checkAdminMessages() {
+            const username = sessionStorage.getItem('currentUser');
+            if (!username || username === 'Admin@Dating') return;
+            
+            const messages = JSON.parse(localStorage.getItem(`messages_${username}`) || '[]');
+            if (messages.length > 0) {
+                // Show the most recent message
+                const latestMessage = messages[messages.length - 1];
+                alert(`💀 Message from ${latestMessage.from}:\n\n${latestMessage.message}`);
+                
+                // Remove shown message
+                messages.pop();
+                if (messages.length > 0) {
+                    localStorage.setItem(`messages_${username}`, JSON.stringify(messages));
+                } else {
+                    localStorage.removeItem(`messages_${username}`);
+                }
+            }
+        }
+        
+        // Check for messages when page loads
+        window.addEventListener('load', checkAdminMessages);
+        
+        // Check if user is admin and navigate to admin panel
+        function checkAdminAccess() {
+            const username = sessionStorage.getItem('currentUser');
+            if (!username) {
+                alert('💀 Please log in first.');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const userRole = users[username]?.role || 'user';
+            const isAdmin = userRole === 'admin' || username === 'Admin@Dating';
+            
+            if (isAdmin) {
+                // Ensure isAdmin flag is set
+                sessionStorage.setItem('isAdmin', 'true');
+                window.location.href = 'admin.html';
+            } else {
+                alert('💀 Access denied. Admin privileges required.');
+            }
+        }
+        
+        // Show admin link if user is admin
+        window.addEventListener('load', () => {
+            const username = sessionStorage.getItem('currentUser');
+            if (!username) return;
+            
+            const users = JSON.parse(localStorage.getItem('users') || '{}');
+            const userRole = users[username]?.role || 'user';
+            const isAdmin = userRole === 'admin' || username === 'Admin@Dating';
+            
+            if (isAdmin) {
+                // Ensure isAdmin flag is set
+                sessionStorage.setItem('isAdmin', 'true');
+                document.getElementById('adminLink').style.display = 'inline-block';
+            }
+        });
+        
+        // Check if being impersonated
+        const impersonating = sessionStorage.getItem('impersonating');
+        if (impersonating === 'true') {
+            document.getElementById('impersonationWarning').style.display = 'block';
+            const logoutLink = document.getElementById('logoutLink');
+            logoutLink.textContent = '🔑 SSH Out (Return to Admin)';
+            logoutLink.onclick = function() {
+                if (confirm('💀 Return to Admin Panel?')) {
+                    const originalAdmin = sessionStorage.getItem('originalAdmin');
+                    sessionStorage.setItem('currentUser', originalAdmin);
+                    sessionStorage.setItem('isAdmin', 'true');
+                    sessionStorage.removeItem('impersonating');
+                    sessionStorage.removeItem('originalAdmin');
+                    window.location.href = 'admin.html';
+                }
+            };
+        }
+    </script>
+</body>
+</html>
+

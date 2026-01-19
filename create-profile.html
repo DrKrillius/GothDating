@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile - GothDating.com</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h1>💀 Create New Profile 💀</h1>
+            <p style="font-size: 0.9em; color: #888; margin-bottom: 5px;">GothDating.com</p>
+            <p class="login-subtitle">Add a new dark soul to the dating pool</p>
+            
+            <form id="createProfileForm">
+                <div class="form-group">
+                    <label for="profileName">Profile Name:</label>
+                    <input type="text" id="profileName" name="profileName" required placeholder="Enter profile name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileImage">Profile Image:</label>
+                    <input type="file" id="profileImage" name="profileImage" accept="image/*" required>
+                    <small style="color: #888; display: block; margin-top: 5px;">Upload an image for this profile</small>
+                </div>
+                
+                <div class="form-group">
+                    <label style="margin-top: 20px; display: block; color: #b8860b;">Profile Information (Optional):</label>
+                    
+                    <div class="form-group" style="margin-top: 10px;">
+                        <label for="profileNameField">Name:</label>
+                        <input type="text" id="profileNameField" name="profileNameField" placeholder="Enter name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileSurname">Surname:</label>
+                        <input type="text" id="profileSurname" name="profileSurname" placeholder="Enter surname">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileAge">Age:</label>
+                        <input type="number" id="profileAge" name="profileAge" placeholder="Enter age" min="1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileAdditionalInfo">Additional Info:</label>
+                        <textarea id="profileAdditionalInfo" name="profileAdditionalInfo" placeholder="Enter any additional information" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" class="action-btn accept-btn">
+                    <span class="btn-icon">⛏️</span>
+                    <span class="btn-text">Create Profile</span>
+                </button>
+            </form>
+            
+            <a href="index.html" class="back-link" style="margin-top: 20px; display: inline-block;">← Back to Dating</a>
+        </div>
+    </div>
+
+    <script src="create-profile.js"></script>
+</body>
+</html>
+

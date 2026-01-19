@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Goth Dating</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="profile-detail-container">
+        <header>
+            <p class="tagline" style="font-size: 0.9em; color: #888; margin-bottom: 10px; text-align: center;">GothDating.com</p>
+            <a href="graveyard.html" class="back-link">← Back to Graveyard</a>
+        </header>
+
+        <div class="profile-detail-card">
+            <div class="profile-detail-image-container">
+                <img id="profileDetailImage" src="" alt="Profile">
+            </div>
+            
+            <div class="profile-detail-info">
+                <h2 id="profileDetailName"></h2>
+                
+                <div class="info-section">
+                    <h3>💀 Personal Information</h3>
+                    <div id="profilePersonalInfo"></div>
+                </div>
+
+                <div class="info-section">
+                    <h3>🌙 Status</h3>
+                    <p id="profileStatus"></p>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="action-btn remove-btn" id="removeBtn">
+                        <span class="btn-icon">🗑️</span>
+                        <span class="btn-text">Remove</span>
+                    </button>
+                    <button class="action-btn move-btn" id="moveBtn">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Move</span>
+                    </button>
+                </div>
+                <div class="profile-actions" id="messageActions" style="display: none;">
+                    <button class="action-btn message-btn" id="messageBtn">
+                        <span class="btn-icon">💬</span>
+                        <span class="btn-text">Message</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>
+

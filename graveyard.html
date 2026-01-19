@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Graveyard - GothDating.com</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="graveyard-container">
+        <header>
+            <h1>💀 My Graveyard 💀</h1>
+            <p class="tagline" style="font-size: 0.9em; color: #888; margin-bottom: 10px;">GothDating.com</p>
+            <a href="index.html" class="back-link">← Back to Dating</a>
+        </header>
+
+        <div class="graveyard-layout">
+            <div class="graveyard-section">
+                <h2>🪦 My Graveyard</h2>
+                <p class="section-subtitle">Souls you dug</p>
+                <div class="profiles-grid" id="graveyardGrid">
+                    <p class="empty-message">No souls in your graveyard yet...</p>
+                </div>
+            </div>
+
+            <div class="graveyard-section">
+                <h2>👻 Previous Souls</h2>
+                <p class="section-subtitle">Souls taken by the light</p>
+                <div class="profiles-grid" id="previousSoulsGrid">
+                    <p class="empty-message">No previous souls yet...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="graveyard.js"></script>
+    <script>
+        // Check for admin messages on page load
+        function checkAdminMessages() {
+            const username = sessionStorage.getItem('currentUser');
+            if (!username || username === 'Admin@Dating') return;
+            
+            const messages = JSON.parse(localStorage.getItem(`messages_${username}`) || '[]');
+            if (messages.length > 0) {
+                const latestMessage = messages[messages.length - 1];
+                alert(`💀 Message from ${latestMessage.from}:\n\n${latestMessage.message}`);
+                
+                messages.pop();
+                if (messages.length > 0) {
+                    localStorage.setItem(`messages_${username}`, JSON.stringify(messages));
+                } else {
+                    localStorage.removeItem(`messages_${username}`);
+                }
+            }
+        }
+        window.addEventListener('load', checkAdminMessages);
+    </script>
+</body>
+</html>
+

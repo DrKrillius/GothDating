@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GothDating.com - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <h1>🦇 Goth Dating 🦇</h1>
+            <p style="font-size: 0.9em; color: #888; margin-bottom: 5px;">GothDating.com</p>
+            <p class="login-subtitle">Create your dark soul profile</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter your dark name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your secret">
+                </div>
+                
+                <button type="submit" class="action-btn accept-btn">
+                    <span class="btn-icon">💀</span>
+                    <span class="btn-text">Enter the Darkness</span>
+                </button>
+            </form>
+            
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255, 0, 255, 0.2);">
+                <button type="button" id="createUserBtn" class="action-btn move-btn" style="width: 100%;">
+                    <span class="btn-icon">➕</span>
+                    <span class="btn-text">Create New User</span>
+                </button>
+            </div>
+            
+            <p class="login-footer">New to the crypt? Use "Create New User" or login to auto-create.</p>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
+
